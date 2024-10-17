@@ -330,20 +330,20 @@ mod tests {
   use super::*;
   use crate::{test_ecc, test_ffc, test_hash, test_ifc, test_symmetric};
 
-  test_ecc!(p224, Lenstra, P224, Ok(ECC_224));
-  test_ecc!(p256, Lenstra, P256, Ok(ECC_256));
-  test_ecc!(p384, Lenstra, P384, Ok(ECC_384));
-  test_ecc!(p521, Lenstra, P521, Ok(ECC_512));
-  test_ecc!(ed25519, Lenstra, ED25519, Ok(ECC_256));
-  test_ecc!(ed448, Lenstra, ED448, Ok(ECC_512));
-  test_ecc!(x25519, Lenstra, X25519, Ok(ECC_256));
-  test_ecc!(x448, Lenstra, X448, Ok(ECC_512));
-  test_ecc!(brainpoolp224r1, Lenstra, BRAINPOOLP224R1, Ok(ECC_224));
-  test_ecc!(brainpoolp256r1, Lenstra, BRAINPOOLP256R1, Ok(ECC_256));
-  test_ecc!(brainpoolp320r1, Lenstra, BRAINPOOLP320R1, Ok(ECC_384));
-  test_ecc!(brainpoolp384r1, Lenstra, BRAINPOOLP384R1, Ok(ECC_384));
-  test_ecc!(brainpoolp512r1, Lenstra, BRAINPOOLP512R1, Ok(ECC_512));
-  test_ecc!(secp256k1, Lenstra, SECP256K1, Ok(ECC_256));
+  test_ecc!(p224, Lenstra, P224, Ok(ECC_224), "d");
+  test_ecc!(p256, Lenstra, P256, Ok(ECC_256), "d");
+  test_ecc!(p384, Lenstra, P384, Ok(ECC_384), "d");
+  test_ecc!(p521, Lenstra, P521, Ok(ECC_512), "d");
+  test_ecc!(ed25519, Lenstra, ED25519, Ok(ECC_256), "d");
+  test_ecc!(ed448, Lenstra, ED448, Ok(ECC_512), "d");
+  test_ecc!(x25519, Lenstra, X25519, Ok(ECC_256), "d");
+  test_ecc!(x448, Lenstra, X448, Ok(ECC_512), "d");
+  test_ecc!(brainpoolp224r1, Lenstra, BRAINPOOLP224R1, Ok(ECC_224), "d");
+  test_ecc!(brainpoolp256r1, Lenstra, BRAINPOOLP256R1, Ok(ECC_256), "d");
+  test_ecc!(brainpoolp320r1, Lenstra, BRAINPOOLP320R1, Ok(ECC_384), "d");
+  test_ecc!(brainpoolp384r1, Lenstra, BRAINPOOLP384R1, Ok(ECC_384), "d");
+  test_ecc!(brainpoolp512r1, Lenstra, BRAINPOOLP512R1, Ok(ECC_512), "d");
+  test_ecc!(secp256k1, Lenstra, SECP256K1, Ok(ECC_256), "d");
 
   test_ffc!(ffc_1024_160, Lenstra, DSA_1024_160, Err(DSA_2048_224));
   test_ffc!(ffc_2048_224, Lenstra, DSA_2048_224, Ok(DSA_2048_224));

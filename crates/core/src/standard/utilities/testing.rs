@@ -3,12 +3,31 @@
 /// Expands a unit test for an elliptic curve primitive.
 #[macro_export]
 macro_rules! test_ecc {
-  ($name:ident, $standard:ident, $input:expr, $want:expr) => {
+  ($name:ident, $standard:ident, $input:expr, $want:expr, $dummy:expr) => {
     #[test]
     fn $name() {
       use $crate::context::Context;
       let ctx = Context::default();
       assert_eq!($standard::validate_ecc(ctx, $input), $want);
+    }
+  };
+  // ($name:ident, $standard:ident, $input:expr, $want:expr, $year:expr) => {
+  //   #[test]
+  //   fn $name() {
+  //     use $crate::context::Context;
+  //     let ctx = Context::new($crate::context::Context::DEFAULT_SECURITY, $year);
+  //     assert_eq!($standard::validate_ecc(ctx, $input), $want);
+  //   }
+  // };
+  ($name:ident, $standard:ident, $input:expr, $want:expr) => {
+    #[test]
+    fn $name() {
+      use $crate::context::Context;
+      for (year, expected) in $want {
+        let ctx = Context::new($crate::context::Context::DEFAULT_SECURITY, year);
+        let got = $standard::validate_ecc(ctx, $input);
+        assert_eq!(got, expected, "validate_ecc for year {}", year);
+      }
     }
   };
 }

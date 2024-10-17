@@ -308,20 +308,176 @@ mod tests {
   use super::*;
   use crate::{test_ecc, test_ffc, test_hash, test_ifc, test_symmetric};
 
-  test_ecc!(p224, Ecrypt, P224, Ok(ECC_256));
-  test_ecc!(p256, Ecrypt, P256, Ok(ECC_256));
-  test_ecc!(p384, Ecrypt, P384, Ok(ECC_384));
-  test_ecc!(p521, Ecrypt, P521, Ok(ECC_512));
-  test_ecc!(ed25519, Ecrypt, ED25519, Ok(ECC_256));
-  test_ecc!(ed448, Ecrypt, ED448, Ok(ECC_512));
-  test_ecc!(x25519, Ecrypt, X25519, Ok(ECC_256));
-  test_ecc!(x448, Ecrypt, X448, Ok(ECC_512));
-  test_ecc!(brainpoolp224r1, Ecrypt, BRAINPOOLP224R1, Ok(ECC_256));
-  test_ecc!(brainpoolp256r1, Ecrypt, BRAINPOOLP256R1, Ok(ECC_256));
-  test_ecc!(brainpoolp320r1, Ecrypt, BRAINPOOLP320R1, Ok(ECC_384));
-  test_ecc!(brainpoolp384r1, Ecrypt, BRAINPOOLP384R1, Ok(ECC_384));
-  test_ecc!(brainpoolp512r1, Ecrypt, BRAINPOOLP512R1, Ok(ECC_512));
-  test_ecc!(secp256k1, Ecrypt, SECP256K1, Ok(ECC_256));
+  test_ecc!(
+    p224,
+    Ecrypt,
+    P224,
+    [
+      (2010, Ok(ECC_256)),
+      (2020, Ok(ECC_256)),
+      (2023, Ok(ECC_256)),
+      (2024, Err(ECC_256)),
+      (2031, Err(ECC_256)),
+      (2139, Err(ECC_256))
+    ]
+  );
+
+  test_ecc!(
+    p256,
+    Ecrypt,
+    P256,
+    [
+      (2010, Ok(ECC_256)),
+      (2024, Ok(ECC_256)),
+      (2031, Ok(ECC_256)),
+      (2139, Ok(ECC_256))
+    ]
+  );
+
+  test_ecc!(
+    p384,
+    Ecrypt,
+    P384,
+    [
+      (2010, Ok(ECC_384)),
+      (2024, Ok(ECC_384)),
+      (2031, Ok(ECC_384)),
+      (2139, Ok(ECC_384))
+    ]
+  );
+
+  test_ecc!(
+    p521,
+    Ecrypt,
+    P521,
+    [
+      (2010, Ok(ECC_512)),
+      (2024, Ok(ECC_512)),
+      (2031, Ok(ECC_512)),
+      (2139, Ok(ECC_512))
+    ]
+  );
+
+  test_ecc!(
+    ed25519,
+    Ecrypt,
+    ED25519,
+    [
+      (2010, Ok(ECC_256)),
+      (2024, Ok(ECC_256)),
+      (2031, Ok(ECC_256)),
+      (2139, Ok(ECC_256))
+    ]
+  );
+
+  test_ecc!(
+    ed448,
+    Ecrypt,
+    ED448,
+    [
+      (2010, Ok(ECC_512)),
+      (2024, Ok(ECC_512)),
+      (2031, Ok(ECC_512)),
+      (2139, Ok(ECC_512))
+    ]
+  );
+
+  test_ecc!(
+    x25519,
+    Ecrypt,
+    X25519,
+    [
+      (2010, Ok(ECC_256)),
+      (2024, Ok(ECC_256)),
+      (2031, Ok(ECC_256)),
+      (2139, Ok(ECC_256))
+    ]
+  );
+
+  test_ecc!(
+    x448,
+    Ecrypt,
+    X448,
+    [
+      (2010, Ok(ECC_512)),
+      (2024, Ok(ECC_512)),
+      (2031, Ok(ECC_512)),
+      (2139, Ok(ECC_512))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp224r1,
+    Ecrypt,
+    BRAINPOOLP224R1,
+    [
+      (2010, Ok(ECC_256)),
+      (2023, Ok(ECC_256)),
+      (2024, Err(ECC_256)),
+      (2031, Err(ECC_256)),
+      (2139, Err(ECC_256))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp256r1,
+    Ecrypt,
+    BRAINPOOLP256R1,
+    [
+      (2010, Ok(ECC_256)),
+      (2024, Ok(ECC_256)),
+      (2031, Ok(ECC_256)),
+      (2139, Ok(ECC_256))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp320r1,
+    Ecrypt,
+    BRAINPOOLP320R1,
+    [
+      (2010, Ok(ECC_384)),
+      (2024, Ok(ECC_384)),
+      (2031, Ok(ECC_384)),
+      (2139, Ok(ECC_384))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp384r1,
+    Ecrypt,
+    BRAINPOOLP384R1,
+    [
+      (2010, Ok(ECC_384)),
+      (2024, Ok(ECC_384)),
+      (2031, Ok(ECC_384)),
+      (2139, Ok(ECC_384))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp521r1,
+    Ecrypt,
+    BRAINPOOLP512R1,
+    [
+      (2010, Ok(ECC_512)),
+      (2024, Ok(ECC_512)),
+      (2031, Ok(ECC_512)),
+      (2139, Ok(ECC_512))
+    ]
+  );
+
+  test_ecc!(
+    secp256k1,
+    Ecrypt,
+    SECP256K1,
+    [
+      (2010, Ok(ECC_256)),
+      (2024, Ok(ECC_256)),
+      (2031, Ok(ECC_256)),
+      (2139, Ok(ECC_256))
+    ]
+  );
 
   test_ffc!(ffc_1024_160, Ecrypt, DSA_1024_160, Ok(DSA_3072_256));
   test_ffc!(ffc_2048_224, Ecrypt, DSA_2048_224, Ok(DSA_3072_256));

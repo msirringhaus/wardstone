@@ -184,45 +184,50 @@ mod tests {
   use super::*;
   use crate::{test_ecc, test_ffc, test_hash, test_ifc, test_symmetric};
 
-  test_ecc!(p224, Strong, P224, Err(ECC_NOT_ALLOWED));
-  test_ecc!(p256, Strong, P256, Err(ECC_NOT_ALLOWED));
-  test_ecc!(p384, Strong, P384, Err(ECC_NOT_ALLOWED));
-  test_ecc!(p521, Strong, P521, Err(ECC_NOT_ALLOWED));
-  test_ecc!(ed25519, Strong, ED25519, Err(ECC_NOT_ALLOWED));
-  test_ecc!(ed448, Strong, ED448, Err(ECC_NOT_ALLOWED));
-  test_ecc!(x25519, Strong, X25519, Err(ECC_NOT_ALLOWED));
-  test_ecc!(x488, Strong, X448, Err(ECC_NOT_ALLOWED));
+  test_ecc!(p224, Strong, P224, Err(ECC_NOT_ALLOWED), "d");
+  test_ecc!(p256, Strong, P256, Err(ECC_NOT_ALLOWED), "d");
+  test_ecc!(p384, Strong, P384, Err(ECC_NOT_ALLOWED), "d");
+  test_ecc!(p521, Strong, P521, Err(ECC_NOT_ALLOWED), "d");
+  test_ecc!(ed25519, Strong, ED25519, Err(ECC_NOT_ALLOWED), "d");
+  test_ecc!(ed448, Strong, ED448, Err(ECC_NOT_ALLOWED), "d");
+  test_ecc!(x25519, Strong, X25519, Err(ECC_NOT_ALLOWED), "d");
+  test_ecc!(x488, Strong, X448, Err(ECC_NOT_ALLOWED), "d");
   test_ecc!(
     brainpoolp224r1,
     Strong,
     BRAINPOOLP224R1,
-    Err(ECC_NOT_ALLOWED)
+    Err(ECC_NOT_ALLOWED),
+    "d"
   );
   test_ecc!(
     brainpoolp256r1,
     Strong,
     BRAINPOOLP256R1,
-    Err(ECC_NOT_ALLOWED)
+    Err(ECC_NOT_ALLOWED),
+    "d"
   );
   test_ecc!(
     brainpoolp320r1,
     Strong,
     BRAINPOOLP320R1,
-    Err(ECC_NOT_ALLOWED)
+    Err(ECC_NOT_ALLOWED),
+    "d"
   );
   test_ecc!(
     brainpoolp384r1,
     Strong,
     BRAINPOOLP384R1,
-    Err(ECC_NOT_ALLOWED)
+    Err(ECC_NOT_ALLOWED),
+    "d"
   );
   test_ecc!(
     brainpoolp512r1,
     Strong,
     BRAINPOOLP512R1,
-    Err(ECC_NOT_ALLOWED)
+    Err(ECC_NOT_ALLOWED),
+    "d"
   );
-  test_ecc!(secp256k1, Strong, SECP256K1, Err(ECC_NOT_ALLOWED));
+  test_ecc!(secp256k1, Strong, SECP256K1, Err(ECC_NOT_ALLOWED), "d");
 
   test_ffc!(ffc_1024_160, Strong, DSA_1024_160, Err(FFC_NOT_SUPPORTED));
   test_ffc!(ffc_2048_224, Strong, DSA_2048_224, Err(FFC_NOT_SUPPORTED));

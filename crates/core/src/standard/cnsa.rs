@@ -221,20 +221,174 @@ mod tests {
   use super::*;
   use crate::{test_ecc, test_ffc, test_hash, test_ifc, test_symmetric};
 
-  test_ecc!(p224, Cnsa, P224, Err(P384));
-  test_ecc!(p256, Cnsa, P256, Err(P384));
-  test_ecc!(p384, Cnsa, P384, Ok(P384));
-  test_ecc!(p521, Cnsa, P521, Err(P384));
-  test_ecc!(ed25519, Cnsa, ED25519, Err(P384));
-  test_ecc!(ed448, Cnsa, ED448, Err(P384));
-  test_ecc!(x25519, Cnsa, X25519, Err(P384));
-  test_ecc!(x448, Cnsa, X448, Err(P384));
-  test_ecc!(brainpoolp224r1, Cnsa, BRAINPOOLP224R1, Err(P384));
-  test_ecc!(brainpoolp256r1, Cnsa, BRAINPOOLP256R1, Err(P384));
-  test_ecc!(brainpoolp320r1, Cnsa, BRAINPOOLP320R1, Err(P384));
-  test_ecc!(brainpoolp384r1, Cnsa, BRAINPOOLP384R1, Err(P384));
-  test_ecc!(brainpoolp512r1, Cnsa, BRAINPOOLP512R1, Err(P384));
-  test_ecc!(secp256k1, Cnsa, SECP256K1, Err(P384));
+  test_ecc!(
+    p224,
+    Cnsa,
+    P224,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    p256,
+    Cnsa,
+    P256,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    p384,
+    Cnsa,
+    P384,
+    [
+      (2010, Ok(P384)),
+      (2024, Ok(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    p521,
+    Cnsa,
+    P521,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    ed25519,
+    Cnsa,
+    ED25519,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    ed448,
+    Cnsa,
+    ED448,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    x25519,
+    Cnsa,
+    X25519,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    x448,
+    Cnsa,
+    X448,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp224r1,
+    Cnsa,
+    BRAINPOOLP224R1,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2030, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp256r1,
+    Cnsa,
+    BRAINPOOLP256R1,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp320r1,
+    Cnsa,
+    BRAINPOOLP320R1,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp384r1,
+    Cnsa,
+    BRAINPOOLP384R1,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp521r1,
+    Cnsa,
+    BRAINPOOLP512R1,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
+
+  test_ecc!(
+    secp256k1,
+    Cnsa,
+    SECP256K1,
+    [
+      (2010, Err(P384)),
+      (2024, Err(P384)),
+      (2031, Err(ECC_NOT_ALLOWED)),
+      (2139, Err(ECC_NOT_ALLOWED))
+    ]
+  );
 
   test_hash!(blake2b_256, Cnsa, BLAKE2B_256, Err(SHA384));
   test_hash!(blake2b_384, Cnsa, BLAKE2B_384, Err(SHA384));

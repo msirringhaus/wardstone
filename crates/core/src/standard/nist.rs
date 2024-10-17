@@ -15,7 +15,7 @@ use crate::primitive::ifc::*;
 use crate::primitive::symmetric::*;
 use crate::primitive::Primitive;
 
-const CUTOFF_YEAR: u16 = 2031; // See p. 59.
+const CUTOFF_YEAR: u16 = 2030; // See p. 59.
 const CUTOFF_YEAR_3TDEA: u16 = 2023; // See footnote on p. 54.
 const CUTOFF_YEAR_DSA: u16 = 2023; // See FIPS-186-5 p. 16.
 
@@ -423,20 +423,176 @@ mod tests {
   use super::*;
   use crate::{test_ecc, test_ffc, test_hash, test_hash_based, test_ifc, test_symmetric};
 
-  test_ecc!(p224, Nist, P224, Ok(P224));
-  test_ecc!(p256, Nist, P256, Ok(P256));
-  test_ecc!(p384, Nist, P384, Ok(P384));
-  test_ecc!(p521, Nist, P521, Ok(P521));
-  test_ecc!(ed25519, Nist, ED25519, Ok(P256));
-  test_ecc!(ed448, Nist, ED448, Ok(P384));
-  test_ecc!(x25519, Nist, X25519, Err(P256));
-  test_ecc!(x448, Nist, X448, Err(P256));
-  test_ecc!(brainpoolp224r1, Nist, BRAINPOOLP224R1, Ok(P224));
-  test_ecc!(brainpoolp256r1, Nist, BRAINPOOLP256R1, Ok(P256));
-  test_ecc!(brainpoolp320r1, Nist, BRAINPOOLP320R1, Ok(P256));
-  test_ecc!(brainpoolp384r1, Nist, BRAINPOOLP384R1, Ok(P384));
-  test_ecc!(brainpoolp512r1, Nist, BRAINPOOLP512R1, Ok(P521));
-  test_ecc!(secp256k1, Nist, SECP256K1, Ok(P256));
+  test_ecc!(
+    p224,
+    Nist,
+    P224,
+    [
+      (2010, Ok(P224)),
+      (2020, Ok(P224)),
+      (2024, Ok(P224)),
+      (2030, Ok(P224)),
+      (2031, Err(P256)),
+      (2139, Err(P256))
+    ]
+  );
+
+  test_ecc!(
+    p256,
+    Nist,
+    P256,
+    [
+      (2010, Ok(P256)),
+      (2024, Ok(P256)),
+      (2031, Ok(P256)),
+      (2139, Ok(P256))
+    ]
+  );
+
+  test_ecc!(
+    p384,
+    Nist,
+    P384,
+    [
+      (2010, Ok(P384)),
+      (2024, Ok(P384)),
+      (2031, Ok(P384)),
+      (2139, Ok(P384))
+    ]
+  );
+
+  test_ecc!(
+    p521,
+    Nist,
+    P521,
+    [
+      (2010, Ok(P521)),
+      (2024, Ok(P521)),
+      (2031, Ok(P521)),
+      (2139, Ok(P521))
+    ]
+  );
+
+  test_ecc!(
+    ed25519,
+    Nist,
+    ED25519,
+    [
+      (2010, Ok(P256)),
+      (2024, Ok(P256)),
+      (2031, Ok(P256)),
+      (2139, Ok(P256))
+    ]
+  );
+
+  test_ecc!(
+    ed448,
+    Nist,
+    ED448,
+    [
+      (2010, Ok(P384)),
+      (2024, Ok(P384)),
+      (2031, Ok(P384)),
+      (2139, Ok(P384))
+    ]
+  );
+
+  test_ecc!(
+    x25519,
+    Nist,
+    X25519,
+    [
+      (2010, Err(P256)),
+      (2024, Err(P256)),
+      (2031, Err(P256)),
+      (2139, Err(P256))
+    ]
+  );
+
+  test_ecc!(
+    x448,
+    Nist,
+    X448,
+    [
+      (2010, Err(P256)),
+      (2024, Err(P256)),
+      (2031, Err(P256)),
+      (2139, Err(P256))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp224r1,
+    Nist,
+    BRAINPOOLP224R1,
+    [
+      (2010, Ok(P224)),
+      (2024, Ok(P224)),
+      (2030, Ok(P224)),
+      (2031, Err(P256)),
+      (2139, Err(P256))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp256r1,
+    Nist,
+    BRAINPOOLP256R1,
+    [
+      (2010, Ok(P256)),
+      (2024, Ok(P256)),
+      (2031, Ok(P256)),
+      (2139, Ok(P256))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp320r1,
+    Nist,
+    BRAINPOOLP320R1,
+    [
+      (2010, Ok(P256)),
+      (2024, Ok(P256)),
+      (2031, Ok(P256)),
+      (2139, Ok(P256))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp384r1,
+    Nist,
+    BRAINPOOLP384R1,
+    [
+      (2010, Ok(P384)),
+      (2024, Ok(P384)),
+      (2031, Ok(P384)),
+      (2139, Ok(P384))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp521r1,
+    Nist,
+    BRAINPOOLP512R1,
+    [
+      (2010, Ok(P521)),
+      (2024, Ok(P521)),
+      (2031, Ok(P521)),
+      (2139, Ok(P521))
+    ]
+  );
+
+  test_ecc!(
+    secp256k1,
+    Nist,
+    SECP256K1,
+    [
+      (2010, Ok(P256)),
+      (2024, Ok(P256)),
+      (2031, Ok(P256)),
+      (2139, Ok(P256))
+    ]
+  );
 
   test_ffc!(ffc_1024_160, Nist, DSA_1024_160, Err(DSA_2048_224));
   test_ffc!(ffc_2048_224, Nist, DSA_2048_224, Ok(DSA_2048_224));

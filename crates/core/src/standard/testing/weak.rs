@@ -218,20 +218,32 @@ mod tests {
   use super::*;
   use crate::{test_ecc, test_ffc, test_hash, test_ifc, test_symmetric};
 
-  test_ecc!(p224, Weak, P224, Ok(P224));
-  test_ecc!(p256, Weak, P256, Ok(ED25519));
-  test_ecc!(p384, Weak, P384, Ok(P384));
-  test_ecc!(p521, Weak, P521, Ok(P521));
-  test_ecc!(ed25519, Weak, ED25519, Ok(ED25519));
-  test_ecc!(ed488, Weak, ED448, Ok(ED448));
-  test_ecc!(x25519, Weak, X25519, Ok(ED25519));
-  test_ecc!(x448, Weak, X448, Ok(ED448));
-  test_ecc!(brainpoolp224r1, Weak, BRAINPOOLP224R1, Ok(P224));
-  test_ecc!(brainpoolp256r1, Weak, BRAINPOOLP256R1, Ok(ED25519));
-  test_ecc!(brainpoolp320r1, Weak, BRAINPOOLP320R1, Ok(BRAINPOOLP320R1));
-  test_ecc!(brainpoolp384r1, Weak, BRAINPOOLP384R1, Ok(P384));
-  test_ecc!(brainpoolp512r1, Weak, BRAINPOOLP512R1, Ok(BRAINPOOLP512R1));
-  test_ecc!(secp256k1, Weak, SECP256K1, Ok(ED25519));
+  test_ecc!(p224, Weak, P224, Ok(P224), "d");
+  test_ecc!(p256, Weak, P256, Ok(ED25519), "d");
+  test_ecc!(p384, Weak, P384, Ok(P384), "d");
+  test_ecc!(p521, Weak, P521, Ok(P521), "d");
+  test_ecc!(ed25519, Weak, ED25519, Ok(ED25519), "d");
+  test_ecc!(ed488, Weak, ED448, Ok(ED448), "d");
+  test_ecc!(x25519, Weak, X25519, Ok(ED25519), "d");
+  test_ecc!(x448, Weak, X448, Ok(ED448), "d");
+  test_ecc!(brainpoolp224r1, Weak, BRAINPOOLP224R1, Ok(P224), "d");
+  test_ecc!(brainpoolp256r1, Weak, BRAINPOOLP256R1, Ok(ED25519), "d");
+  test_ecc!(
+    brainpoolp320r1,
+    Weak,
+    BRAINPOOLP320R1,
+    Ok(BRAINPOOLP320R1),
+    "d"
+  );
+  test_ecc!(brainpoolp384r1, Weak, BRAINPOOLP384R1, Ok(P384), "d");
+  test_ecc!(
+    brainpoolp512r1,
+    Weak,
+    BRAINPOOLP512R1,
+    Ok(BRAINPOOLP512R1),
+    "d"
+  );
+  test_ecc!(secp256k1, Weak, SECP256K1, Ok(ED25519), "d");
 
   test_ffc!(ffc_1024_160, Weak, DSA_1024_160, Ok(DSA_1024_160));
   test_ffc!(ffc_2048_224, Weak, DSA_2048_224, Ok(DSA_2048_224));

@@ -349,20 +349,174 @@ mod tests {
   use super::*;
   use crate::{test_ecc, test_ffc, test_hash, test_hash_based, test_ifc, test_symmetric};
 
-  test_ecc!(p224, Bsi, P224, Err(BRAINPOOLP256R1));
-  test_ecc!(p256, Bsi, P256, Ok(BRAINPOOLP256R1));
-  test_ecc!(p384, Bsi, P384, Ok(BRAINPOOLP384R1));
-  test_ecc!(p521, Bsi, P521, Ok(BRAINPOOLP512R1));
-  test_ecc!(x25519, Bsi, X25519, Err(BRAINPOOLP256R1));
-  test_ecc!(x448, Bsi, X448, Err(BRAINPOOLP256R1));
-  test_ecc!(ed25519, Bsi, ED25519, Err(BRAINPOOLP256R1));
-  test_ecc!(ed448, Bsi, ED448, Err(BRAINPOOLP256R1));
-  test_ecc!(brainpoolp224r1, Bsi, BRAINPOOLP224R1, Err(BRAINPOOLP256R1));
-  test_ecc!(brainpoolp256r1, Bsi, BRAINPOOLP256R1, Ok(BRAINPOOLP256R1));
-  test_ecc!(brainpoolp320r1, Bsi, BRAINPOOLP320R1, Ok(BRAINPOOLP320R1));
-  test_ecc!(brainpoolp384r1, Bsi, BRAINPOOLP384R1, Ok(BRAINPOOLP384R1));
-  test_ecc!(brainpoolp512r1, Bsi, BRAINPOOLP512R1, Ok(BRAINPOOLP512R1));
-  test_ecc!(secp256k1, Bsi, SECP256K1, Err(BRAINPOOLP256R1));
+  test_ecc!(
+    p224,
+    Bsi,
+    P224,
+    [
+      (2010, Err(BRAINPOOLP256R1)),
+      (2024, Err(BRAINPOOLP256R1)),
+      (2031, Err(BRAINPOOLP256R1)),
+      (2139, Err(BRAINPOOLP256R1))
+    ]
+  );
+
+  test_ecc!(
+    p256,
+    Bsi,
+    P256,
+    [
+      (2010, Ok(BRAINPOOLP256R1)),
+      (2024, Ok(BRAINPOOLP256R1)),
+      (2031, Ok(BRAINPOOLP256R1)),
+      (2139, Ok(BRAINPOOLP256R1))
+    ]
+  );
+
+  test_ecc!(
+    p384,
+    Bsi,
+    P384,
+    [
+      (2010, Ok(BRAINPOOLP384R1)),
+      (2024, Ok(BRAINPOOLP384R1)),
+      (2031, Ok(BRAINPOOLP384R1)),
+      (2139, Ok(BRAINPOOLP384R1))
+    ]
+  );
+
+  test_ecc!(
+    p521,
+    Bsi,
+    P521,
+    [
+      (2010, Ok(BRAINPOOLP512R1)),
+      (2024, Ok(BRAINPOOLP512R1)),
+      (2031, Ok(BRAINPOOLP512R1)),
+      (2139, Ok(BRAINPOOLP512R1))
+    ]
+  );
+
+  test_ecc!(
+    x25519,
+    Bsi,
+    X25519,
+    [
+      (2010, Err(BRAINPOOLP256R1)),
+      (2024, Err(BRAINPOOLP256R1)),
+      (2031, Err(BRAINPOOLP256R1)),
+      (2139, Err(BRAINPOOLP256R1))
+    ]
+  );
+
+  test_ecc!(
+    x448,
+    Bsi,
+    X448,
+    [
+      (2010, Err(BRAINPOOLP256R1)),
+      (2024, Err(BRAINPOOLP256R1)),
+      (2031, Err(BRAINPOOLP256R1)),
+      (2139, Err(BRAINPOOLP256R1))
+    ]
+  );
+
+  test_ecc!(
+    ed25519,
+    Bsi,
+    ED25519,
+    [
+      (2010, Err(BRAINPOOLP256R1)),
+      (2024, Err(BRAINPOOLP256R1)),
+      (2031, Err(BRAINPOOLP256R1)),
+      (2139, Err(BRAINPOOLP256R1))
+    ]
+  );
+
+  // TODO: Is 256 as result correct? NIST goes for 384 there
+  test_ecc!(
+    ed448,
+    Bsi,
+    ED448,
+    [
+      (2010, Err(BRAINPOOLP256R1)),
+      (2024, Err(BRAINPOOLP256R1)),
+      (2031, Err(BRAINPOOLP256R1)),
+      (2139, Err(BRAINPOOLP256R1))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp224r1,
+    Bsi,
+    BRAINPOOLP224R1,
+    [
+      (2010, Err(BRAINPOOLP256R1)),
+      (2024, Err(BRAINPOOLP256R1)),
+      (2031, Err(BRAINPOOLP256R1)),
+      (2139, Err(BRAINPOOLP256R1))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp256r1,
+    Bsi,
+    BRAINPOOLP256R1,
+    [
+      (2010, Ok(BRAINPOOLP256R1)),
+      (2024, Ok(BRAINPOOLP256R1)),
+      (2031, Ok(BRAINPOOLP256R1)),
+      (2139, Ok(BRAINPOOLP256R1))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp320r1,
+    Bsi,
+    BRAINPOOLP320R1,
+    [
+      (2010, Ok(BRAINPOOLP320R1)),
+      (2024, Ok(BRAINPOOLP320R1)),
+      (2031, Ok(BRAINPOOLP320R1)),
+      (2139, Ok(BRAINPOOLP320R1))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp384r1,
+    Bsi,
+    BRAINPOOLP384R1,
+    [
+      (2010, Ok(BRAINPOOLP384R1)),
+      (2024, Ok(BRAINPOOLP384R1)),
+      (2031, Ok(BRAINPOOLP384R1)),
+      (2139, Ok(BRAINPOOLP384R1))
+    ]
+  );
+
+  test_ecc!(
+    brainpoolp512r1,
+    Bsi,
+    BRAINPOOLP512R1,
+    [
+      (2010, Ok(BRAINPOOLP512R1)),
+      (2024, Ok(BRAINPOOLP512R1)),
+      (2031, Ok(BRAINPOOLP512R1)),
+      (2139, Ok(BRAINPOOLP512R1))
+    ]
+  );
+
+  test_ecc!(
+    secp256k1,
+    Bsi,
+    SECP256K1,
+    [
+      (2010, Err(BRAINPOOLP256R1)),
+      (2024, Err(BRAINPOOLP256R1)),
+      (2031, Err(BRAINPOOLP256R1)),
+      (2139, Err(BRAINPOOLP256R1))
+    ]
+  );
 
   test_ffc!(ffc_1024_160, Bsi, DSA_1024_160, Err(DSA_3072_256));
   test_ffc!(ffc_2048_224, Bsi, DSA_2048_224, Err(DSA_3072_256));

@@ -16,8 +16,8 @@ impl Context {
   // NOTE: This does not imply that the minimum security level is 0 but
   // rather that it will default to the minimum security level specified
   // in the standard.
-  const DEFAULT_SECURITY: u16 = 0;
-  const DEFAULT_YEAR: u16 = 2023;
+  pub const DEFAULT_SECURITY: u16 = 0;
+  pub const DEFAULT_YEAR: u16 = 2023;
 
   /// Creates a new context.
   ///
